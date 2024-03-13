@@ -1,0 +1,11 @@
+.holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrollClass {
+    height: 65vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

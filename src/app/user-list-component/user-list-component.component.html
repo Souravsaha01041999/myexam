@@ -1,0 +1,64 @@
+<p-toast></p-toast>
+
+<div style="height: 150px;">
+    <p-panel header="Filter" toggleable="true">
+        <form (ngSubmit)="applyFilters()">
+            <div class="p-grid">
+                <div class="p-col-4">
+                    <input [style]="{'width':'100%'}" type="text" [ngModelOptions]="{standalone: true}"
+                        placeholder="Name" pInputText [(ngModel)]="filterName" />
+                </div>
+                <div class="p-col-4">
+                    <input [style]="{'width':'100%'}" type="text" [ngModelOptions]="{standalone: true}"
+                        placeholder="Email Id" pInputText [(ngModel)]="filterEmail" />
+                </div>
+                <div class="p-col-2">
+                    <button type="submit" [style]="{'width':'100%'}" pButton pRipple label="Filter"
+                        class="p-button-success"></button>
+                </div>
+                <div class="p-col-2">
+                    <button type="button" [style]="{'width':'100%'}" pButton pRipple label="Reset"
+                        class="p-button-success" (click)="resetFilter()"></button>
+                </div>
+            </div>
+        </form>
+    </p-panel>
+</div>
+
+<br>
+<div class="holder" *ngIf="isLoading">
+    <div>
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+            animationDuration=".5s"></p-progressSpinner>
+    </div>
+</div>
+
+<div *ngIf="isError">
+
+</div>
+
+<div class="scrollClass">
+    <div *ngFor="let eachDetails of listOfUser">
+        <p-card header="{{ eachDetails['name'] }}">
+            <div>
+                <div class="p-grid">
+                    <div class="p-col-3">Email:</div>
+                    <div class="p-col-9">{{ eachDetails['email'] }}</div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-3">
+                        Address:
+                    </div>
+                    <div class="p-col-9">
+                        {{ eachDetails['address']['street'] }}
+                    </div>
+                </div>
+            </div>
+        </p-card>
+        <br>
+    </div>
+</div>
+<br>
+<div class="holder">
+    <button [style]="{'width':'40%'}" pButton pRipple label="Back" class="p-button-success" (click)="onBack()"></button>
+</div>
